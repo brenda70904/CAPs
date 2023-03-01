@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-const eventPool = require("../eventPool");
-const driver = require("./index");
+const eventPool = require('../eventPool');
+const driver = require('./index');
 
-// jest.mock("../eventPool", () => {
+// jest.mock('../eventPool', () => {
 //   return {
 
 //     on: jest.fn(),
@@ -13,11 +13,11 @@ const driver = require("./index");
 console.log = jest.fn();
 eventPool.emit = jest.fn();
 
-describe("test driver", () => {
-  it("emit PACKAGE_PICKUPED", () => {
-    let payload = {orderId: 112}
+describe('test driver', () => {
+  it('emit PACKAGE_PICKUPED', () => {
+    let payload = {orderId: 112};
     driver.pickedup(payload);
     expect(console.log).toHaveBeenCalledWith(`package picked up:${payload.orderId}`);
     
   });
-})
+});

@@ -1,9 +1,10 @@
-"use strict";
+'use strict';
 
-const eventPool = require("../eventPool");
-const thankyou = require("./handler");
+const {io} = require('socket.io-client');
+const socket = io('http://localhost:3001/amazon');
+const thankyou = require('./handler');
 
-let Chance = require("chance");
+let Chance = require('chance');
 let chance = new Chance();
 
 let createPackage = (store = chance.word({ syllables: 1 })) => {
@@ -11,9 +12,9 @@ let createPackage = (store = chance.word({ syllables: 1 })) => {
     orderId: chance.guid(),
     store:`${store}'s store`,
     customer: chance.name(),
-    address: chance.address()
-  }
-  eventPool.emit("PICKUP_PACKAGE", payload);
+    address: chance.address(),
+  };
+  socket.emit('PICKUP_PACKAGE', payload);
 };
 
 const confirmOrder = (payload) => {
@@ -21,6 +22,11 @@ const confirmOrder = (payload) => {
     thankyou(payload);
     // console.log(`thank you for shopping with us, ${payload.customer}`);
   }, 2000);
-}
+};
 
-module.exports = { createPackage, confirmOrder };
+
+setInterval(() => {
+  createPackage();
+}, 10000);
+
+module.exports =  confirmOrder;

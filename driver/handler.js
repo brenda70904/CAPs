@@ -1,11 +1,12 @@
-"use strict";
+'use strict';
 
-const logger = require("../logger");
-const eventPool = require("../eventPool");
+const logger = require('../logger');
+const amazon = require('../hub');
 
-module.exports = (message, payload) =>{
-  eventPool.emit(message, payload);
-    console.log(`${message}:${payload.orderId}`);
-    logger(message, payload);
-}
+
+module.exports = (message, payload) => {
+  amazon.emit(message, payload);
+  console.log(`${message}:${payload.orderId}`);
+  logger(message, payload);
+};
 

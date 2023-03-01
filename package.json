@@ -2,16 +2,17 @@
   "name": "caps",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "hub.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose --coverage",
+    "start": "node hub.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brenda70904/CAPs.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Brenda",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/brenda70904/CAPs/issues"

@@ -1,39 +1,18 @@
 'use strict';
 
 const { io } = require('socket.io-client');
+const socket = io('http://localhost:3001/caps');
 
-const handler = require('./handler');
-
-const pickedup = (payload) => {
+socket.on('PACKAGE_PICKEDUP',(payload)=>{
   setTimeout(() => {
-    handler('PACKAGE_RECEIVED', payload);
-    // eventPool.emit('PACKAGE_PICKUPED', payload);
-    // console.log(`package picked up:${payload.orderId}`);
-    // logger(payload,'PickedUp');
+    console.log('DRIVER: package picked up');
+    socket.emit('IN_TRANSIT',payload);
   }, 2000);
-};
+});
 
-const inTransit = (payload) => {
+socket.on('DELIVERY',(payload)=>{
   setTimeout(() => {
-    handler('IN_TRANSIT', payload);
-    // eventPool.emit('IN_TRANSIT', payload);
-    // console.log(`DRIVER: in-transit: ${payload.orderId}`);
-    // logger(payload,'in transit');
-  }, 2000);
-};
-
-const delivered = (payload) => {
-  setTimeout(() => {
-    handler('DELIVERED', payload);
-    // eventPool.emit('DELIVERED', payload);
-    // console.log(`DRIVER: delivered ${payload.orderId}`);
-    // logger(payload,'delivered');
+    console.log('package has been delivered.');
+    socket.emit('DELIVERED',payload);
   }, 3000);
-};
-
-
-module.exports = {
-  pickedup,
-  inTransit,
-  delivered,
-};
+});

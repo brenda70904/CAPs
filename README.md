@@ -19,12 +19,11 @@ Concise Description of why this app exists
 
 #### `.env` requirements (where applicable)
 
-for now I have none and do not require one
-
+  for now I have none and do not require one
 
 #### How to initialize/run your application (where applicable)
 
-- e.g. `npm start`
+  - to see the message in terminal: `node file-name`
 
 #### How to use your library (where applicable)
 
@@ -35,10 +34,11 @@ for now I have none and do not require one
 
 #### Tests
 
-- How do you run tests?
-- Any tests of note?
+- How do you run tests? Any tests of note?
+  - jest `run npm test filename.test.js`
+
 - Describe any tests that you did not complete, skipped, etc
 
 #### UML
 
-Link to an image of the UML for your application and response to events
+![uml](./assets/uml.jpeg)

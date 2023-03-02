@@ -23,19 +23,18 @@ caps.on('connection', (socket) => {
   });
 
   //manage the PICKUP event
-  socket.on('PICKUP_PACKAGE', (payload) => {
+  socket.on('PICKUP', (payload) => {
     //this is the switchboard
-    socket.broadcast.emit('PACKAGE_PICKEDUP', payload);
+    socket.broadcast.emit('PICKUP', payload);
   });
 
   socket.on('IN_TRANSIT',(payload)=>{
     console.log('DRIVER: package is on the way');
-    socket.broadcast.emit('DELIVERY',payload);
-
+    socket.broadcast.emit('IN_TRANSIT',payload);
   });
 
-  socket.on('DELIVERED',(payload)=>{
-    socket.emit('NOTE',payload);
+  socket.on('DELIVERY',(payload)=>{
+    socket.broadcast.emit('DELIVERY',payload);
   });
 });
 

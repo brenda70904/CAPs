@@ -6,10 +6,6 @@ const { Server } = require('socket.io');
 const PORT = process.env.PORT || 3002;
 const server = new Server();
 
-// const { pickedup, inTransit, delivered } = require('./driver');
-// const  confirmOrder  = require('./vendor');
-// const logger = require('./logger');
-
 //create a namespace
 const caps = server.of('/caps');
 

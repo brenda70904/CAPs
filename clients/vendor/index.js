@@ -1,30 +1,22 @@
 'use strict';
 
 const { io } = require('socket.io-client');
-let Chance = require('chance');
+const socket = io('http://localhost:3002/caps');
 
-const socket = io('http://localhost:3001/caps');
-let chance = new Chance();
+const { createPackage, thankDriver } = require('./handler');
+let vendor = '1-800-flowers';
 
-let createPackage = () => {
-  let payload = {
-    orderId: chance.guid(),
-    store:'1-800-flowers',
-    customer: chance.name(),
-    address: chance.address(),
-  };
-  console.log('VENDOR: order ready for pickup.');
-  socket.emit('PICKUP', payload);
-};
+socket.emit('JOIN', vendor);
+socket.emit('GET-ALL', { queueId: vendor });
 
-socket.on('DELIVERY',(payload)=>{
+socket.on('DELIVERED', (payload) => {
   setTimeout(() => {
-    console.log(`thank you for shopping with us, ${payload.customer}`);
+    thankDriver(payload);
+    socket.emit('RECEIVED', payload);
   }, 2000);
 });
 
 
 setInterval(() => {
-  createPackage();
+  createPackage(socket);
 }, 10000);
-

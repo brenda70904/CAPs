@@ -11,26 +11,23 @@ Concise Description of why this app exists
 
 ### Links and Resources
 
-- [GitHub Actions ci/cd](https://github.com/rkgallaway/server-deployment-practice-d51/actions) 
-- [back-end server url](http://xyz.com) (when applicable)
-- [front-end application](http://xyz.com) (when applicable)
+- [GitHub Actions ci/cd](https://github.com/rkgallaway/server-deployment-practice-d51/actions)
 
 ### Setup
 
 #### `.env` requirements (where applicable)
 
-  for now I have none and do not require one
+PORT=3001
 
 #### How to initialize/run your application (where applicable)
 
-  - to see the message in terminal: `node file-name`
-
-#### How to use your library (where applicable)
+to run the application
+go to server folder and run `node index.js` to start the server
+go into client folder and run `node index.js` to start the socket.io
 
 #### Features / Routes
 
-- Feature One: Details of feature
-- GET : `/hello` - specific route to hit
+N/A
 
 #### Tests
 
@@ -38,6 +35,7 @@ Concise Description of why this app exists
   - jest `run npm test filename.test.js`
 
 - Describe any tests that you did not complete, skipped, etc
+  skipped the handler tests.
 
 #### UML
 
